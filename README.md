@@ -68,8 +68,6 @@ bash gps-tracker.sh
 
 ## Credits
 - Created by: **Manjunath Yalam**
-- Original Hound by: TechChip (Anil Parashar)
-- Chatbot template: Masud Rana
 
 ## License
 This tool is for educational and authorized penetration testing purposes only.
