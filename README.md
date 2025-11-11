@@ -2,7 +2,7 @@
 GPS Tracker is a simple and light tool for information gathering and capturing exact GPS coordinates
 
 Created by **Manjunath Yalam**  
-Modified from original Hound by TechChip
+
 
 ![GPS Tracker](<img width="1385" height="805" alt="Image" src="https://github.com/user-attachments/assets/c215c042-ac01-4a79-8789-4b3976a7abd9" />)
 
