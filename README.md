@@ -4,7 +4,7 @@ GPS Tracker is a simple and light tool for information gathering and capturing e
 Created by **Manjunath Yalam**  
 
 
-![GPS Track Screenshot](https://user-images.githubusercontent.com/...)
+![GPS Track Screenshot](<img width="1385" height="805" alt="Image" src="https://github.com/user-attachments/assets/71a470a4-ffda-40b9-94a5-b49d9fdd2adc" />)
 
 # What is GPS Tracker?
 GPS Tracker is a tool that can remotely capture the exact GPS coordinates of a target device using a PHP server, and can also grab basic information about the system and ISP. This tool can be very helpful in information gathering. You can get the following information of the target device:
